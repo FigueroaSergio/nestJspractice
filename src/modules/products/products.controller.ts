@@ -14,7 +14,9 @@ import { ConfigType } from '@nestjs/config';
 import { config } from '../../config';
 import { ProductsService } from './products.service';
 import { ProductsPipe } from './products.pipe';
-import { CreateProductDto, UpdateProductDto } from './products.dtos';
+import { CreateProductDto, UpdateProductDto } from './products.dto';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
   constructor(
@@ -22,6 +24,7 @@ export class ProductsController {
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
   @Get()
+  @ApiOperation({ summary: 'Trae todos los productos del database' })
   find() {
     console.log(this.configService.apiKey);
     return this.productsService.find();
