@@ -5,4 +5,4 @@ const API_KEY = '1234324';
   providers: [{ provide: 'API_KEY', useValue: API_KEY }],
   exports: ['API_KEY'],
 })
-export class ConfigModule {}
+export class MyConfigModule {}

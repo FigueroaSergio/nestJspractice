@@ -7,8 +7,8 @@ import {
   Put,
   Delete,
   ParseIntPipe,
-  Inject,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ProductsService } from './products.service';
 import { ProductsPipe } from './products.pipe';
 import { CreateProductDto, UpdateProductDto } from './products.dtos';
@@ -16,11 +16,11 @@ import { CreateProductDto, UpdateProductDto } from './products.dtos';
 export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
-    @Inject('API_KEY') private apiKey: string,
+    private readonly serviceConfig: ConfigService,
   ) {}
   @Get()
   find() {
-    console.log(this.apiKey);
+    console.log(this.serviceConfig.get('API_KEY'));
     return this.productsService.find();
   }
 
