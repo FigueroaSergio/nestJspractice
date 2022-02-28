@@ -7,8 +7,10 @@ import {
   Put,
   Delete,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { ConfigType } from '@nestjs/config';
+import { config } from '../../config';
 import { ProductsService } from './products.service';
 import { ProductsPipe } from './products.pipe';
 import { CreateProductDto, UpdateProductDto } from './products.dtos';
@@ -16,11 +18,11 @@ import { CreateProductDto, UpdateProductDto } from './products.dtos';
 export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
-    private readonly serviceConfig: ConfigService,
+    @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
   @Get()
   find() {
-    console.log(this.serviceConfig.get('API_KEY'));
+    console.log(this.configService.apiKey);
     return this.productsService.find();
   }
 

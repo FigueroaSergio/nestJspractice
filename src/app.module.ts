@@ -7,6 +7,7 @@ import { enviroments } from './enviroments';
 //  la api key solo es validad  y utilizable en el modulo
 import { ProductsModule } from './modules/products/products.module';
 import { MyConfigModule } from './config/config.module';
+import { config } from './config';
 
 @Module({
   controllers: [AppController],
@@ -14,6 +15,7 @@ import { MyConfigModule } from './config/config.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: enviroments[process.env.NODE_ENV] || '.env',
+      load: [config],
       isGlobal: true,
     }),
     ProductsModule,
