@@ -10,6 +10,7 @@ import {
   Inject,
 } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
+
 import { config } from '../../config';
 import { ProductsService } from './products.service';
 import { ProductsPipe } from './products.pipe';

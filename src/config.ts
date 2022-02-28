@@ -3,8 +3,8 @@ import { registerAs } from '@nestjs/config';
 const config = registerAs('config', () => {
   return {
     database: {
-      name: process.env.DBURL,
-      port: process.env.DBPORT,
+      name: process.env.URL_DB,
+      port: process.env.PORT_DB,
     },
     apiKey: process.env.API_KEY,
   };
