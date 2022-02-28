@@ -7,15 +7,20 @@ import {
   Put,
   Delete,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductsPipe } from './products.pipe';
 import { CreateProductDto, UpdateProductDto } from './products.dtos';
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(
+    private readonly productsService: ProductsService,
+    @Inject('API_KEY') private apiKey: string,
+  ) {}
   @Get()
   find() {
+    console.log(this.apiKey);
     return this.productsService.find();
   }
 
